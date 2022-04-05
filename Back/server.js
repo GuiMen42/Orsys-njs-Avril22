@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 
 // Express.static permet de récupérer un fichier dans le répertoire wwwDir
 app.use(express.static(wwwDir));
-app.use(serveIndex(wwwDir, { icons: true }));
+app.use(serveIndex(wwwDir, { icon: true }));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
