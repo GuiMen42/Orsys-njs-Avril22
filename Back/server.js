@@ -5,6 +5,7 @@ const serveIndex = require("serve-index");
 
 const app = express();
 const port = 3000;
+const wwwDir = "."; // "." - Répertoire courant
 
 // Tous les types de requetes
 app.use((req, res, next) => {
@@ -14,9 +15,13 @@ app.use((req, res, next) => {
 
 // envoie d'une réponse sur une requête get
 // Ajout * dans le path pour prendre en compte toute les requetes
-app.get("/*", (req, res) => {
-  res.send("Hello World!");
-});
+// app.get("/*", (req, res) => {
+//   res.send("Hello World!");
+// });
+
+// Express.static permet de récupérer un fichier dans le répertoire wwwDir
+app.use(express.static(wwwDir));
+app.use(serveIndex(wwwDir, { icons: true }));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
