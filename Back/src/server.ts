@@ -19,9 +19,16 @@ app.use((req, res, next) => {
 //   res.send("Hello World!");
 // });
 
+// Middleware de crash du serveur
+app.get("/api/crash", (req, res, next) => {
+  (async () => {
+    throw new Error("Oups... Server crashed...");
+  })();
+});
+
 // Express.static permet de récupérer un fichier dans le répertoire wwwDir
 app.use(express.static(wwwDir));
-app.use(serveIndex(wwwDir, { icons: false }));
+app.use(serveIndex(wwwDir, { icons: true }));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
