@@ -1,5 +1,6 @@
 import express from "express";
 import serveIndex from "serve-index";
+import { export_api as api } from "./api"; // as permet de renommer l'object
 
 console.log("About to start the server");
 
@@ -19,12 +20,7 @@ app.use((req, res, next) => {
 //   res.send("Hello World!");
 // });
 
-// Middleware de crash du serveur
-app.get("/api/crash", (req, res, next) => {
-  (async () => {
-    throw new Error("Oups... Server crashed...");
-  })();
-});
+app.use("/api", api);
 
 // Express.static permet de récupérer un fichier dans le répertoire wwwDir
 app.use(express.static(wwwDir));
