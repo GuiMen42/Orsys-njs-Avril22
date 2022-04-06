@@ -5,7 +5,7 @@ console.log("About to start the server");
 
 const app = express();
 const port = +process.env.PORT || 3000;
-const wwwDir = "."; // "." - Répertoire courant
+const wwwDir = "./public"; // "." - Répertoire courant
 
 // Tous les types de requetes
 app.use((req, res, next) => {
