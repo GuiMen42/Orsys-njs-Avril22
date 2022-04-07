@@ -3,7 +3,9 @@
   <div class="content">
     <nav>
       <button routerLink="add">Ajouter</button>
-      <button>Supprimer</button>
+      <button *ngIf="selectedItems.size > 0" (click)="remove()">
+        Supprimer
+      </button>
     </nav>
     <table>
       <thead>
@@ -14,7 +16,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let article of articleService.articles">
+        <!-- la class selected est que dans le scss on aurait pu l'appeler TOTO -->
+        <tr
+          (click)="toggle(article)"
+          [class.selectedArticle]="selectedItems.has(article)"
+          *ngFor="let article of articleService.articles"
+        >
           <td class="name">{{ article.name }}</td>
           <td class="price">{{ article.price }}</td>
           <td class="qty">{{ article.qty }}</td>
