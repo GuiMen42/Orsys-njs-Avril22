@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 import serveIndex from "serve-index";
 import { export_api as api } from "./api"; // as permet de renommer l'object
@@ -32,6 +33,3 @@ app.use(serveIndex(wwwDir, { icons: true }));
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
-function cors(): any {
-  throw new Error("Function not implemented.");
-}
