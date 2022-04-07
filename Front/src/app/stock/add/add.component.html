@@ -1,18 +1,22 @@
 <main>
   <h1>Ajout d'un article</h1>
-  <form>
+  <form [formGroup]="formulaire" (ngSubmit)="submit()">
     <label>
       <div>Nom</div>
-      <input type="text" />
+      <input type="text" formControlName="name" />
     </label>
     <label>
       <div>Prix</div>
-      <input type="number" />
+      <input type="number" formControlName="price" />
     </label>
     <label>
       <div>Quantité</div>
-      <input type="number" />
+      <input type="number" formControlName="qty" />
     </label>
     <button>Ajouter</button>
   </form>
+
+  <!-- A supprimer après avoir réaliser les tests -->
+  <!-- Un formulaire reactive Pour faire' du débogage -->
+  {{ formulaire.value | json }}
 </main>
