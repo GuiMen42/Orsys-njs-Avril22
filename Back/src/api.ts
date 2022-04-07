@@ -27,7 +27,13 @@ app.get("/date", (req, res, next) => {
 });
 
 app.get("/articles", (req, res) => {
-  res.json(articles);
+  (async () => {
+    try {
+      res.json(articles);
+    } catch (err) {
+      console.log("err: ", err);
+    }
+  })();
 });
 
 app.post("/articles", (req, res) => {
