@@ -32,6 +32,18 @@ export class ArticleService {
   }
 
   retrieveAll() {
-    this.http.get(this.urlServer + this.urlApi + this.urlArticles);
+    this.http
+      .get<Article[]>(this.urlServer + this.urlApi + this.urlArticles)
+      .subscribe({
+        next: (articles) => {
+          this.articles = articles;
+        },
+        error: (err) => {
+          console.log('err: ', err);
+        },
+        complete: () => {
+          console.log('Fin de récupération des artciles');
+        },
+      });
   }
 }

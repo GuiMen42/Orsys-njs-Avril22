@@ -20,6 +20,9 @@ app.use((req, res, next) => {
 //   res.send("Hello World!");
 // });
 
+// Pour valider le cors pour le server
+app.use(cors());
+
 app.use("/api", api);
 
 // Express.static permet de récupérer un fichier dans le répertoire wwwDir
@@ -29,3 +32,6 @@ app.use(serveIndex(wwwDir, { icons: true }));
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+function cors(): any {
+  throw new Error("Function not implemented.");
+}
