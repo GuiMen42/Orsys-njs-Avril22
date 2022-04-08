@@ -11,9 +11,9 @@ import { ArticleService } from 'src/app/services/article.service';
 })
 export class AddComponent implements OnInit {
   formulaire = new FormGroup({
-    name: new FormControl('truc', [Validators.required]),
-    price: new FormControl('2.78', [Validators.required]),
-    qty: new FormControl('45', [Validators.required]),
+    name: new FormControl('Default Name', [Validators.required]),
+    price: new FormControl(10.25, [Validators.required]),
+    qty: new FormControl(12, [Validators.required]),
   });
 
   constructor(
