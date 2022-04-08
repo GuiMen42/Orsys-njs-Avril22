@@ -4,8 +4,8 @@ import morgan, { Morgan } from "morgan";
 import { validation } from "./validation";
 
 //import { RAMArticleService as ArticleService } from "./services/RAMArticle.service";
-//import { FileArticleService as ArticleService } from "./services/FileArticle.service";
-import { MongoArticleService as ArticleService } from "./services/MongoArticle.service";
+import { FileArticleService as ArticleService } from "./services/FileArticle.service";
+//import { MongoArticleService as ArticleService } from "./services/MongoArticle.service";
 import {
   ArticleCreateModel,
   ArticleDeleteModel,
