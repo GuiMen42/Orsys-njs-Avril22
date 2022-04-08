@@ -1,9 +1,10 @@
 import { json, Router } from "express"; // {} permet de récupérer directement un object de la bibliothèque
 import { Article } from "./interfaces/article";
 import morgan, { Morgan } from "morgan";
-import { RAMArticlesService } from "./services/RAMArticles.service";
+//import { RAMArticleService } from "./services/RAMArticle.service";
+import { FileArticleService } from "./services/FileArticle.service";
 
-const articlesService = new RAMArticlesService();
+const articlesService = new FileArticleService();
 
 const app = Router();
 

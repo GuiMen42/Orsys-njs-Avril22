@@ -7,7 +7,7 @@ let articles: Article[] = [
   { id: "3", name: "autres articles", price: 20, qty: 250 },
 ];
 
-export class RAMArticlesService {
+export class FileArticleService {
   async retrieveAll() {
     return articles;
   }
