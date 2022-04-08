@@ -5,10 +5,10 @@ import { v4 as uuidv4 } from "uuid";
 
 const app = Router();
 
-const articles: Article[] = [
-  { name: "Tondeuse", price: 120, qty: 9 },
-  { name: "Marteau", price: 20, qty: 250 },
-  { name: "autres articles", price: 20, qty: 250 },
+let articles: Article[] = [
+  { id: "1", name: "Tondeuse", price: 120, qty: 9 },
+  { id: "2", name: "Marteau", price: 20, qty: 250 },
+  { id: "3", name: "autres articles", price: 20, qty: 250 },
 ];
 
 // Middleware
@@ -56,7 +56,17 @@ app.post("/articles", (req, res) => {
 });
 
 app.delete("/articles", (req, res) => {
-  console.log("delete");
+  (async () => {
+    try {
+      const ids: string[] = req.body;
+      console.log("ids: ", ids);
+      articles = articles.filter((a) => !ids.includes(a.id));
+      res.status(204).end();
+    } catch (err) {
+      console.log("err: ", err);
+      res.status(500).end();
+    }
+  })();
 });
 
 export const export_api = app; // Nom de l'objet dans les autres files

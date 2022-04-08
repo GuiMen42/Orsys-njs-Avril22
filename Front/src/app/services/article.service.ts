@@ -45,7 +45,7 @@ export class ArticleService {
 
   async remove(selectedItems: Set<Article>) {
     try {
-      const ids = [...selectedItems].map((a) => a.id);
+      const ids = [...selectedItems].map((a) => a.id) as string[];
       await lastValueFrom(
         this.http.delete<void>(
           this.urlServer + this.urlApi + this.urlArticles,
