@@ -1,10 +1,15 @@
 import { json, Router } from "express"; // {} permet de récupérer directement un object de la bibliothèque
 import { Article } from "./interfaces/article";
 import morgan, { Morgan } from "morgan";
+import { validation } from "./validation";
 
 //import { RAMArticleService as ArticleService } from "./services/RAMArticle.service";
 //import { FileArticleService as ArticleService } from "./services/FileArticle.service";
 import { MongoArticleService as ArticleService } from "./services/MongoArticle.service";
+import {
+  ArticleCreateModel,
+  ArticleDeleteModel,
+} from "./validation/article.model";
 
 const articlesService = new ArticleService();
 
@@ -14,7 +19,7 @@ const app = Router();
 // Regarde l'entête, si content-type = application/json alors lecture du body et mise du json dans la partie body de la requete recu
 app.use(json());
 
-app.use(morgan("combined"));
+app.use(morgan("tiny"));
 
 // Middleware de crash du serveur
 app.get("/crash", (req, res, next) => {
@@ -40,7 +45,7 @@ app.get("/articles", (req, res) => {
   })();
 });
 
-app.post("/articles", (req, res) => {
+app.post("/articles", validation(ArticleCreateModel), (req, res) => {
   (async () => {
     try {
       const article: Article = req.body;
@@ -55,7 +60,7 @@ app.post("/articles", (req, res) => {
   })();
 });
 
-app.delete("/articles", (req, res) => {
+app.delete("/articles", validation(ArticleDeleteModel), (req, res) => {
   (async () => {
     try {
       const ids: string[] = req.body;
